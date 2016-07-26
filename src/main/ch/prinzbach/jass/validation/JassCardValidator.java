@@ -5,6 +5,6 @@ import java.util.List;
 public class JassCardValidator {
 
     public boolean validateCard(JassCard card, List<JassCard> playersCards) {
-        return true;
+        return playersCards.contains(card);
     }
 }
