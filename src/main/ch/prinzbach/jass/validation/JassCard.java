@@ -3,9 +3,9 @@ package ch.prinzbach.jass.validation;
 public class JassCard {
 
     private int number;
-    private String color;
+    private CardColor color;
 
-    public JassCard(int number, String color) {
+    public JassCard(int number, CardColor color) {
         this.number = number;
         this.color = color;
     }
@@ -18,11 +18,11 @@ public class JassCard {
         this.number = number;
     }
 
-    public String getColor() {
+    public CardColor getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(CardColor color) {
         this.color = color;
     }
 }

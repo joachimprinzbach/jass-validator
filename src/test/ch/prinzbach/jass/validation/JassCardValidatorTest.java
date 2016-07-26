@@ -10,7 +10,7 @@ public class JassCardValidatorTest {
 
     @Test
     public void validateCard_PlayerHasCardInHand() {
-        final JassCard card = new JassCard(6, "HEARTS");
+        final JassCard card = new JassCard(6, CardColor.HEARTS);
 
         boolean isCardValid = jassCardValidator.validateCard(card);
 
