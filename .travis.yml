@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  - chmod +x gradlew
+  - ./gradlew test
+
+branches:
+  only: master
