@@ -15,7 +15,7 @@ public class JassCardValidatorTest {
     @Test
     public void validateCard_playerHasCardInHand() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        final List<JassCard> playersCards = new ArrayList<JassCard>();
+        final List<JassCard> playersCards = new ArrayList<>();
         playersCards.add(cardToValidate);
 
         boolean isCardValid = jassCardValidator.validateCard(cardToValidate, playersCards);
@@ -26,7 +26,7 @@ public class JassCardValidatorTest {
     @Test
     public void validateCard_playerHasCardNotInHand() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        final List<JassCard> playersCards = new ArrayList<JassCard>();
+        final List<JassCard> playersCards = new ArrayList<>();
 
         boolean isCardValid = jassCardValidator.validateCard(cardToValidate, playersCards);
 
