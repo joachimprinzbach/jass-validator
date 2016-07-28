@@ -16,6 +16,10 @@ public class JassTable {
         playedCards.add(card);
     }
 
+    public boolean isFirstPlayedCard() {
+        return !getFirstCard().isPresent();
+    }
+
     public Optional<JassCard> getFirstCard() {
         if(playedCards.isEmpty()) {
             return Optional.empty();
