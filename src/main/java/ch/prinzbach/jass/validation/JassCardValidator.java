@@ -4,17 +4,15 @@ import java.util.List;
 
 public class JassCardValidator {
 
-    public boolean validateCard(List<JassCard> playedCards, JassCard card, List<JassCard> playersCards) {
-        final boolean playerHasCardInHand = playersCards.contains(card);
-        if (!playerHasCardInHand) {
+    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, List<JassCard> playersCards) {
+        if (!hasPlayerCardInHisHand(playersCards, cardToValidate)) {
             return false;
         } else {
-            final boolean isStartPlayer = playedCards.isEmpty();
-            if (isStartPlayer) {
+            if (isPlayerStartPlayer(playedCards)) {
                 return true;
             } else {
                 final JassCard startCard = playedCards.get(0);
-                if (startCard.getColor().equals(card.getColor())) {
+                if (startCard.getColor().equals(cardToValidate.getColor())) {
                     return true;
                 } else {
                     return false;
@@ -22,4 +20,13 @@ public class JassCardValidator {
             }
         }
     }
+
+    private boolean isPlayerStartPlayer(List<JassCard> playedCards) {
+        return playedCards.isEmpty();
+    }
+
+    private boolean hasPlayerCardInHisHand(List<JassCard> playersCards, JassCard card) {
+        return playersCards.contains(card);
+    }
+
 }
