@@ -1,5 +1,6 @@
 package ch.prinzbach.jass.validation;
 
+import ch.prinzbach.jass.domain.JassCard;
 import ch.prinzbach.jass.validation.strategy.JassValidator;
 import ch.prinzbach.jass.validation.strategy.PlayerHasCardValidator;
 import ch.prinzbach.jass.validation.strategy.PlayerNeedsToPlayCorrectColorValidator;

@@ -1,7 +1,7 @@
 package ch.prinzbach.jass.validation.strategy;
 
-import ch.prinzbach.jass.validation.CardColor;
-import ch.prinzbach.jass.validation.JassCard;
+import ch.prinzbach.jass.domain.CardColor;
+import ch.prinzbach.jass.domain.JassCard;
 
 import java.util.Set;
 

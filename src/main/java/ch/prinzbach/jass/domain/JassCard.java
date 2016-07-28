@@ -1,4 +1,4 @@
-package ch.prinzbach.jass.validation;
+package ch.prinzbach.jass.domain;
 
 public class JassCard {
 

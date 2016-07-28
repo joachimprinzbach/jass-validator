@@ -1,5 +1,7 @@
 package ch.prinzbach.jass.validation;
 
+import ch.prinzbach.jass.domain.CardColor;
+import ch.prinzbach.jass.domain.JassCard;
 import org.junit.Before;
 import org.junit.Test;
 
