@@ -20,7 +20,7 @@ public class JassCardValidator {
     public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
         return validationStrategies.stream()
                 .map(strategy -> strategy.validate(playedCards, cardToValidate, playersCards))
-                .noneMatch(valid -> !valid);
+                .allMatch(valid -> valid);
     }
 
 }
