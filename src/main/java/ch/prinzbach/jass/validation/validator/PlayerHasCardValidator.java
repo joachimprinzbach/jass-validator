@@ -1,10 +1,10 @@
-package ch.prinzbach.jass.validation.strategy;
+package ch.prinzbach.jass.validation.validator;
 
 import ch.prinzbach.jass.domain.JassCard;
 
 import java.util.Set;
 
-public class PlayerHasCardValidator implements JassValidator {
+public class PlayerHasCardValidator implements JassCardValidator {
 
     @Override
     public boolean validate(Set<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {

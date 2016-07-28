@@ -1,11 +1,11 @@
-package ch.prinzbach.jass.validation.strategy;
+package ch.prinzbach.jass.validation.validator;
 
 import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
 
 import java.util.Set;
 
-public class PlayerNeedsToPlayCorrectColorValidator implements JassValidator {
+public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     @Override
     public boolean validate(Set<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
