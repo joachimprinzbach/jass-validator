@@ -2,6 +2,8 @@ package ch.prinzbach.jass.validation;
 
 import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
+import ch.prinzbach.jass.domain.JassTable;
+import ch.prinzbach.jass.domain.Player;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,22 +15,22 @@ import static org.junit.Assert.assertTrue;
 public class JassCardValidationEngineTest {
 
     private JassCardValidationEngine jassCardValidationEngine;
-    private Set<JassCard> alreadyPlayedCards;
-    private Set<JassCard> playersCards;
+    private JassTable jassTable;
+    private Player player;
 
     @Before
     public void setUp() {
         jassCardValidationEngine = new JassCardValidationEngine();
-        alreadyPlayedCards = new LinkedHashSet<>();
-        playersCards = new HashSet<>();
+        jassTable = new JassTable();
+        player = new Player();
     }
 
     @Test
     public void validateCard_playerHasCardInHand() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        playersCards.add(cardToValidate);
+        player.addCard(cardToValidate);
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -37,7 +39,7 @@ public class JassCardValidationEngineTest {
     public void validateCard_playerHasCardNotInHand() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -45,11 +47,11 @@ public class JassCardValidationEngineTest {
     @Test
     public void validateCard_playerShouldHavePlayedSameColor() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        playersCards.add(cardToValidate);
-        playersCards.add(new JassCard(10, CardColor.CLUBS));
-        alreadyPlayedCards.add(new JassCard(7, CardColor.CLUBS));
+        jassTable.addCardToTable(cardToValidate);
+        jassTable.addCardToTable(new JassCard(10, CardColor.CLUBS));
+        jassTable.addCardToTable(new JassCard(7, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -57,10 +59,10 @@ public class JassCardValidationEngineTest {
     @Test
     public void validateCard_playerHasCardsButNotSameColor() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        playersCards.add(cardToValidate);
-        alreadyPlayedCards.add(new JassCard(7, CardColor.CLUBS));
+        player.addCard(cardToValidate);
+        jassTable.addCardToTable(new JassCard(7, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -68,10 +70,10 @@ public class JassCardValidationEngineTest {
     @Test
     public void validateCard_playerHasCardAndPlayedCorrectColor() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
-        playersCards.add(cardToValidate);
-        alreadyPlayedCards.add(new JassCard(7, CardColor.HEARTS));
+        player.addCard(cardToValidate);
+        jassTable.addCardToTable(new JassCard(7, CardColor.HEARTS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
 
         assertTrue(isCardValid);
     }

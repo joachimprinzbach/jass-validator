@@ -2,33 +2,22 @@ package ch.prinzbach.jass.validation.validator;
 
 import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
-
-import java.util.Set;
+import ch.prinzbach.jass.domain.JassTable;
+import ch.prinzbach.jass.domain.Player;
 
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(Set<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
-        if (isPlayerStartPlayer(playedCards)) {
+    public boolean validate(JassTable jassTable, JassCard cardToValidate, Player player) {
+        if (jassTable.isFirstPlayedCard()) {
             return true;
         } else {
-            final CardColor startCardColor = playedCards.iterator().next().getColor();
+            final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
             if (startCardColor.equals(cardToValidate.getColor())) {
                 return true;
             } else {
-                return playerHasNoCardWithMatchingColor(playersCards, startCardColor);
+                return player.hasNoCardWithMatchingColor(startCardColor);
             }
         }
     }
-
-    private boolean playerHasNoCardWithMatchingColor(Set<JassCard> playersCards, CardColor startCardColor) {
-        return playersCards.stream()
-                .map(JassCard::getColor)
-                .noneMatch(cardColor -> cardColor.equals(startCardColor));
-    }
-
-    private boolean isPlayerStartPlayer(Set<JassCard> playedCards) {
-        return playedCards.isEmpty();
-    }
-
 }
