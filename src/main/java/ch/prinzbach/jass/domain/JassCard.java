@@ -2,8 +2,8 @@ package ch.prinzbach.jass.domain;
 
 public class JassCard {
 
-    private int number;
-    private CardColor color;
+    private final int number;
+    private final CardColor color;
 
     public JassCard(int number, CardColor color) {
         this.number = number;

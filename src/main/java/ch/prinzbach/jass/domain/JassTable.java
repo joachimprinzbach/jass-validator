@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class JassTable {
 
-    private Set<JassCard> playedCards;
+    private final Set<JassCard> playedCards;
 
     public JassTable() {
         playedCards = new LinkedHashSet<>();

@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Player {
 
-    private Set<JassCard> handCards;
+    private final Set<JassCard> handCards;
 
     public Player() {
         handCards = new HashSet<>();
