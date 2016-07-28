@@ -42,7 +42,7 @@ public class JassCardValidatorTest {
     }
 
     @Test
-    public void validateCard_playerShouldHavePlayeSameColor() {
+    public void validateCard_playerShouldHavePlayedSameColor() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
         final List<JassCard> playersCards = new ArrayList<>();
         playersCards.add(cardToValidate);
