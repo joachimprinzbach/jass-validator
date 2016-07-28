@@ -16,7 +16,7 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
             if (startCardColor.equals(cardToValidate.getColor())) {
                 return true;
             } else {
-                return player.hasNoCardWithMatchingColor(startCardColor);
+                return player.hasNoCardWithColor(startCardColor);
             }
         }
     }

@@ -19,7 +19,7 @@ public class Player {
         return handCards.contains(card);
     }
 
-    public boolean hasNoCardWithMatchingColor(CardColor startCardColor) {
+    public boolean hasNoCardWithColor(CardColor startCardColor) {
         return handCards.stream()
                 .map(JassCard::getColor)
                 .noneMatch(cardColor -> cardColor.equals(startCardColor));
