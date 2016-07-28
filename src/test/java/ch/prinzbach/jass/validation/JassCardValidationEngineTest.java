@@ -78,4 +78,14 @@ public class JassCardValidationEngineTest {
         assertTrue(isCardValid);
     }
 
+    @Test
+    public void validateCard_playerIsFirstPlayer() {
+        final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
+        player.addCard(cardToValidate);
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, cardToValidate, player);
+
+        assertTrue(isCardValid);
+    }
+
 }
