@@ -12,13 +12,13 @@ public class JassCardValidator {
             if (isPlayerStartPlayer(playedCards)) {
                 return true;
             } else {
-                final JassCard startCard = playedCards.get(0);
-                if (startCard.getColor().equals(cardToValidate.getColor())) {
+                final CardColor startCardColor = playedCards.get(0).getColor();
+                if (startCardColor.equals(cardToValidate.getColor())) {
                     return true;
                 } else {
                     return playersCards.stream()
                             .map(card -> card.getColor())
-                            .noneMatch(cardColor -> cardColor.equals(startCard.getColor()));
+                            .noneMatch(cardColor -> cardColor.equals(startCardColor));
                 }
             }
         }
