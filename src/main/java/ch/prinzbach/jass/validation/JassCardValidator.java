@@ -1,10 +1,11 @@
 package ch.prinzbach.jass.validation;
 
 import java.util.List;
+import java.util.Set;
 
 public class JassCardValidator {
 
-    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, List<JassCard> playersCards) {
+    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
         if (!hasPlayerCardInHisHand(playersCards, cardToValidate)) {
             return false;
         } else {
@@ -25,7 +26,7 @@ public class JassCardValidator {
         return playedCards.isEmpty();
     }
 
-    private boolean hasPlayerCardInHisHand(List<JassCard> playersCards, JassCard card) {
+    private boolean hasPlayerCardInHisHand(Set<JassCard> playersCards, JassCard card) {
         return playersCards.contains(card);
     }
 
