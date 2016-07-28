@@ -3,13 +3,12 @@ package ch.prinzbach.jass.validation.validator;
 import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
 import ch.prinzbach.jass.domain.JassTable;
-
-import java.util.Set;
+import ch.prinzbach.jass.domain.Player;
 
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(JassTable jassTable, JassCard cardToValidate, Set<JassCard> playersCards) {
+    public boolean validate(JassTable jassTable, JassCard cardToValidate, Player player) {
         if (jassTable.isFirstPlayedCard()) {
             return true;
         } else {
@@ -17,14 +16,8 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
             if (startCardColor.equals(cardToValidate.getColor())) {
                 return true;
             } else {
-                return playerHasNoCardWithMatchingColor(playersCards, startCardColor);
+                return player.hasNoCardWithMatchingColor(startCardColor);
             }
         }
-    }
-
-    private boolean playerHasNoCardWithMatchingColor(Set<JassCard> playersCards, CardColor startCardColor) {
-        return playersCards.stream()
-                .map(JassCard::getColor)
-                .noneMatch(cardColor -> cardColor.equals(startCardColor));
     }
 }
