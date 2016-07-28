@@ -52,4 +52,16 @@ public class JassCardValidatorTest {
 
         assertFalse(isCardValid);
     }
+
+    @Test
+    public void validateCard_playerHasCardAndPlayedCorrectColor() {
+        final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
+        final List<JassCard> playersCards = new ArrayList<>();
+        playersCards.add(cardToValidate);
+        alreadyPlayedCards.add(new JassCard(7, CardColor.HEARTS));
+
+        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+
+        assertTrue(isCardValid);
+    }
 }
