@@ -4,7 +4,6 @@ import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
 import ch.prinzbach.jass.domain.JassTable;
 
-import javax.smartcardio.Card;
 import java.util.Set;
 
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
