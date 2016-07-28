@@ -8,15 +8,15 @@ import java.util.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class JassCardValidatorTest {
+public class JassCardValidationEngineTest {
 
-    private JassCardValidator jassCardValidator;
+    private JassCardValidationEngine jassCardValidationEngine;
     private Set<JassCard> alreadyPlayedCards;
     private Set<JassCard> playersCards;
 
     @Before
     public void setUp() {
-        jassCardValidator = new JassCardValidator();
+        jassCardValidationEngine = new JassCardValidationEngine();
         alreadyPlayedCards = new LinkedHashSet<>();
         playersCards = new HashSet<>();
     }
@@ -26,7 +26,7 @@ public class JassCardValidatorTest {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
         playersCards.add(cardToValidate);
 
-        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
 
         assertTrue(isCardValid);
     }
@@ -35,7 +35,7 @@ public class JassCardValidatorTest {
     public void validateCard_playerHasCardNotInHand() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
 
-        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
 
         assertFalse(isCardValid);
     }
@@ -47,7 +47,7 @@ public class JassCardValidatorTest {
         playersCards.add(new JassCard(10, CardColor.CLUBS));
         alreadyPlayedCards.add(new JassCard(7, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
 
         assertFalse(isCardValid);
     }
@@ -58,7 +58,7 @@ public class JassCardValidatorTest {
         playersCards.add(cardToValidate);
         alreadyPlayedCards.add(new JassCard(7, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
 
         assertTrue(isCardValid);
     }
@@ -69,7 +69,7 @@ public class JassCardValidatorTest {
         playersCards.add(cardToValidate);
         alreadyPlayedCards.add(new JassCard(7, CardColor.HEARTS));
 
-        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+        boolean isCardValid = jassCardValidationEngine.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
 
         assertTrue(isCardValid);
     }
