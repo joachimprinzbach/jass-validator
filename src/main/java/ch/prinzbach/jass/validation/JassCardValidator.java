@@ -10,10 +10,14 @@ import java.util.Set;
 
 public class JassCardValidator {
 
-    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
-        final Set<JassValidationStrategy> validationStrategies = new HashSet<>();
+    private final Set<JassValidationStrategy> validationStrategies = new HashSet<>();
+
+    public JassCardValidator() {
         validationStrategies.add(new PlayerHasCardValidationStrategy());
         validationStrategies.add(new PlayerNeedsToPlayCorrectColorValidationStrategy());
+    }
+
+    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
         return validationStrategies.stream()
                 .map(strategy -> strategy.validate(playedCards, cardToValidate, playersCards))
                 .noneMatch(valid -> !valid);
