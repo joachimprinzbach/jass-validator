@@ -56,6 +56,17 @@ public class JassCardValidatorTest {
     }
 
     @Test
+    public void validateCard_playerHasCardsButNotSameColor() {
+        final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
+        playersCards.add(cardToValidate);
+        alreadyPlayedCards.add(new JassCard(7, CardColor.CLUBS));
+
+        boolean isCardValid = jassCardValidator.validateCard(alreadyPlayedCards, cardToValidate, playersCards);
+
+        assertTrue(isCardValid);
+    }
+
+    @Test
     public void validateCard_playerHasCardAndPlayedCorrectColor() {
         final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
         playersCards.add(cardToValidate);

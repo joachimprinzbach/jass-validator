@@ -16,7 +16,9 @@ public class JassCardValidator {
                 if (startCard.getColor().equals(cardToValidate.getColor())) {
                     return true;
                 } else {
-                    return false;
+                    return playersCards.stream()
+                            .map(card -> card.getColor())
+                            .noneMatch(cardColor -> cardColor.equals(startCard.getColor()));
                 }
             }
         }
