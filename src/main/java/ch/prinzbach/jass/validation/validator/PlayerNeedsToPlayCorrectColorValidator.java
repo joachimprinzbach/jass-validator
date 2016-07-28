@@ -10,18 +10,15 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
 
     @Override
     public boolean validate(JassTable jassTable, JassCard cardToValidate, Set<JassCard> playersCards) {
-        if (jassTable.isFirstCard()) {
+        final boolean isFirstCard = !jassTable.getFirstCard().isPresent();
+        if (isFirstCard) {
             return true;
         } else {
-            if (jassTable.getStartColor().isPresent()) {
-                final CardColor startCardColor = jassTable.getStartColor().get();
-                if (startCardColor.equals(cardToValidate.getColor())) {
-                    return true;
-                } else {
-                    return playerHasNoCardWithMatchingColor(playersCards, startCardColor);
-                }
-            } else {
+            final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
+            if (startCardColor.equals(cardToValidate.getColor())) {
                 return true;
+            } else {
+                return playerHasNoCardWithMatchingColor(playersCards, startCardColor);
             }
         }
     }

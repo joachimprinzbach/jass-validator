@@ -16,15 +16,11 @@ public class JassTable {
         playedCards.add(card);
     }
 
-    public boolean isFirstCard() {
-        return playedCards.isEmpty();
-    }
-
-    public Optional<CardColor> getStartColor() {
+    public Optional<JassCard> getFirstCard() {
         if(playedCards.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(playedCards.iterator().next().getColor());
+            return Optional.of(playedCards.iterator().next());
         }
     }
 
