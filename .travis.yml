@@ -6,9 +6,6 @@ jdk:
 before_install:
   - chmod +x gradlew
 
-script:
-  - ./gradlew test
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
