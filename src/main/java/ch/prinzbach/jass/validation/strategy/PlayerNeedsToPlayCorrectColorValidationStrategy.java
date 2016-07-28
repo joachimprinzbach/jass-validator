@@ -9,11 +9,11 @@ import java.util.Set;
 public class PlayerNeedsToPlayCorrectColorValidationStrategy implements JassValidationStrategy {
 
     @Override
-    public boolean validate(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
+    public boolean validate(Set<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
         if (isPlayerStartPlayer(playedCards)) {
             return true;
         } else {
-            final CardColor startCardColor = playedCards.get(0).getColor();
+            final CardColor startCardColor = playedCards.iterator().next().getColor();
             if (startCardColor.equals(cardToValidate.getColor())) {
                 return true;
             } else {
@@ -28,7 +28,7 @@ public class PlayerNeedsToPlayCorrectColorValidationStrategy implements JassVali
                 .noneMatch(cardColor -> cardColor.equals(startCardColor));
     }
 
-    private boolean isPlayerStartPlayer(List<JassCard> playedCards) {
+    private boolean isPlayerStartPlayer(Set<JassCard> playedCards) {
         return playedCards.isEmpty();
     }
 

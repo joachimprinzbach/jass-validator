@@ -3,10 +3,7 @@ package ch.prinzbach.jass.validation;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -14,13 +11,13 @@ import static org.junit.Assert.assertTrue;
 public class JassCardValidatorTest {
 
     private JassCardValidator jassCardValidator;
-    private List<JassCard> alreadyPlayedCards;
+    private Set<JassCard> alreadyPlayedCards;
     private Set<JassCard> playersCards;
 
     @Before
     public void setUp() {
         jassCardValidator = new JassCardValidator();
-        alreadyPlayedCards = new ArrayList<>();
+        alreadyPlayedCards = new LinkedHashSet<>();
         playersCards = new HashSet<>();
     }
 

@@ -17,7 +17,7 @@ public class JassCardValidator {
         validationStrategies.add(new PlayerNeedsToPlayCorrectColorValidationStrategy());
     }
 
-    public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
+    public boolean validateCard(Set<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
         return validationStrategies.stream()
                 .map(strategy -> strategy.validate(playedCards, cardToValidate, playersCards))
                 .allMatch(valid -> valid);
