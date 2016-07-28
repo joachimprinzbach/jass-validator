@@ -3,7 +3,6 @@ package ch.prinzbach.jass.validation.strategy;
 import ch.prinzbach.jass.validation.CardColor;
 import ch.prinzbach.jass.validation.JassCard;
 
-import java.util.List;
 import java.util.Set;
 
 public class PlayerNeedsToPlayCorrectColorValidationStrategy implements JassValidationStrategy {

@@ -5,7 +5,6 @@ import ch.prinzbach.jass.validation.strategy.PlayerHasCardValidationStrategy;
 import ch.prinzbach.jass.validation.strategy.PlayerNeedsToPlayCorrectColorValidationStrategy;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class JassCardValidator {
