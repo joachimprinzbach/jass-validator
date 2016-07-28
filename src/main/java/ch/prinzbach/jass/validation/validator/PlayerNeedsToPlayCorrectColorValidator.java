@@ -28,9 +28,4 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
                 .map(JassCard::getColor)
                 .noneMatch(cardColor -> cardColor.equals(startCardColor));
     }
-
-    private boolean isPlayerStartPlayer(Set<JassCard> playedCards) {
-        return playedCards.isEmpty();
-    }
-
 }
