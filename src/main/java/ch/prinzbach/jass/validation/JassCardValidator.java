@@ -1,35 +1,26 @@
 package ch.prinzbach.jass.validation;
 
+import ch.prinzbach.jass.validation.strategy.JassValidationStrategy;
+import ch.prinzbach.jass.validation.strategy.PlayerHasCardValidationStrategy;
+import ch.prinzbach.jass.validation.strategy.PlayerNeedsToPlayCorrectColorValidationStrategy;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class JassCardValidator {
 
+    private final Set<JassValidationStrategy> validationStrategies = new HashSet<>();
+
+    public JassCardValidator() {
+        validationStrategies.add(new PlayerHasCardValidationStrategy());
+        validationStrategies.add(new PlayerNeedsToPlayCorrectColorValidationStrategy());
+    }
+
     public boolean validateCard(List<JassCard> playedCards, JassCard cardToValidate, Set<JassCard> playersCards) {
-        if (!hasPlayerCardInHisHand(playersCards, cardToValidate)) {
-            return false;
-        } else {
-            if (isPlayerStartPlayer(playedCards)) {
-                return true;
-            } else {
-                final CardColor startCardColor = playedCards.get(0).getColor();
-                if (startCardColor.equals(cardToValidate.getColor())) {
-                    return true;
-                } else {
-                    return playersCards.stream()
-                            .map(card -> card.getColor())
-                            .noneMatch(cardColor -> cardColor.equals(startCardColor));
-                }
-            }
-        }
-    }
-
-    private boolean isPlayerStartPlayer(List<JassCard> playedCards) {
-        return playedCards.isEmpty();
-    }
-
-    private boolean hasPlayerCardInHisHand(Set<JassCard> playersCards, JassCard card) {
-        return playersCards.contains(card);
+        return validationStrategies.stream()
+                .map(strategy -> strategy.validate(playedCards, cardToValidate, playersCards))
+                .allMatch(valid -> valid);
     }
 
 }

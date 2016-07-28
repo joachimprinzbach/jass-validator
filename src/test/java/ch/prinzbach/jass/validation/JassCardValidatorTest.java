@@ -77,6 +77,4 @@ public class JassCardValidatorTest {
         assertTrue(isCardValid);
     }
 
-
-
 }
