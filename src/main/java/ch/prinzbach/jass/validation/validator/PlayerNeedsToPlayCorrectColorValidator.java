@@ -8,16 +8,18 @@ import ch.prinzbach.jass.domain.Player;
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(JassTable jassTable, JassCard cardToValidate, Player player) {
+    public boolean validate(JassTable jassTable, CardColor trump, JassCard cardToValidate, Player player) {
         if (jassTable.isFirstPlayedCard()) {
             return true;
-        } else {
-            final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
-            if (startCardColor.equals(cardToValidate.getColor())) {
-                return true;
-            } else {
-                return player.hasNoCardWithColor(startCardColor);
-            }
         }
+        final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
+        if (startCardColor.equals(cardToValidate.getColor())) {
+            return true;
+        }
+        if (cardToValidate.getColor().equals(trump)) {
+            return true;
+        }
+        return player.hasNoCardWithColor(startCardColor);
+
     }
 }

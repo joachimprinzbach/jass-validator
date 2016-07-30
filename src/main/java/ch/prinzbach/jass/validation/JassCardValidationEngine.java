@@ -1,5 +1,6 @@
 package ch.prinzbach.jass.validation;
 
+import ch.prinzbach.jass.domain.CardColor;
 import ch.prinzbach.jass.domain.JassCard;
 import ch.prinzbach.jass.domain.JassTable;
 import ch.prinzbach.jass.domain.Player;
@@ -19,9 +20,9 @@ public class JassCardValidationEngine {
         validators.add(new PlayerNeedsToPlayCorrectColorValidator());
     }
 
-    public boolean validateCard(JassTable jassTable, JassCard cardToValidate, Player player) {
+    public boolean validateCard(JassTable jassTable, CardColor trump, JassCard cardToValidate, Player player) {
         return validators.stream()
-                .map(validator -> validator.validate(jassTable, cardToValidate, player))
+                .map(validator -> validator.validate(jassTable, trump, cardToValidate, player))
                 .allMatch(valid -> valid);
     }
 
