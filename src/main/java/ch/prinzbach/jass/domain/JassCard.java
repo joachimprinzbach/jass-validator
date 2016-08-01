@@ -13,4 +13,9 @@ public class JassCard {
     public CardColor getColor() {
         return color;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
 }

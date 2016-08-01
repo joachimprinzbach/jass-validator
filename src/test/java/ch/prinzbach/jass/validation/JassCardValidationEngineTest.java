@@ -112,4 +112,18 @@ public class JassCardValidationEngineTest {
         assertFalse(isCardValid);
     }
 
+    @Test
+    public void validateCard_trumpJackDoesNotNeedToBePlayed() {
+        final JassCard cardToValidate = new JassCard(10, CardColor.SPADES);
+        final JassCard trumpJack = new JassCard(11, CardColor.HEARTS);
+        player.addCard(cardToValidate);
+        player.addCard(trumpJack);
+        jassTable.addCardToTable(new JassCard(10, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(7, CardColor.HEARTS));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.HEARTS, cardToValidate, player);
+
+        assertTrue(isCardValid);
+    }
+
 }
