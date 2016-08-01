@@ -7,6 +7,7 @@ import ch.prinzbach.jass.domain.Player;
 import ch.prinzbach.jass.validation.validator.JassCardValidator;
 import ch.prinzbach.jass.validation.validator.PlayerHasCardValidator;
 import ch.prinzbach.jass.validation.validator.PlayerNeedsToPlayCorrectColorValidator;
+import ch.prinzbach.jass.validation.validator.UndertrumpValidator;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class JassCardValidationEngine {
     public JassCardValidationEngine() {
         validators.add(new PlayerHasCardValidator());
         validators.add(new PlayerNeedsToPlayCorrectColorValidator());
+        validators.add(new UndertrumpValidator());
     }
 
     public boolean validateCard(JassTable jassTable, CardColor trump, JassCard cardToValidate, Player player) {

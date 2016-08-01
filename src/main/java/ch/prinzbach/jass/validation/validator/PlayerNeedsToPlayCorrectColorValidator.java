@@ -13,12 +13,20 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
             return true;
         }
         final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
-        if (startCardColor.equals(cardToValidate.getColor())) {
+        if (isCorrectColor(cardToValidate.getColor(), startCardColor)) {
             return true;
         }
-        if (cardToValidate.getColor().equals(trump)) {
+        if (isTrump(cardToValidate, trump)) {
             return true;
         }
         return player.hasNoCardWithColor(startCardColor, trump);
+    }
+
+    private boolean isCorrectColor(CardColor color, CardColor startCardColor) {
+        return startCardColor.equals(color);
+    }
+
+    private boolean isTrump(JassCard cardToValidate, CardColor trump) {
+        return cardToValidate.getColor().equals(trump);
     }
 }
