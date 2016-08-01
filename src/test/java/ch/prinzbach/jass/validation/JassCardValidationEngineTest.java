@@ -90,14 +90,26 @@ public class JassCardValidationEngineTest {
     public void validateCard_trumpCardIsAllowed() {
         final JassCard cardToValidate = new JassCard(6, CardColor.DIAMONDS);
         player.addCard(cardToValidate);
-        final CardColor trump = CardColor.DIAMONDS;
-        jassTable.addCardToTable(cardToValidate);
+        player.addCard(new JassCard(8, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(10, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(7, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, trump, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
 
         assertTrue(isCardValid);
+    }
+
+    @Test
+    public void validateCard_nonTrumpCardShouldNotBeAllowed() {
+        final JassCard cardToValidate = new JassCard(6, CardColor.HEARTS);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(8, CardColor.CLUBS));
+        jassTable.addCardToTable(new JassCard(10, CardColor.CLUBS));
+        jassTable.addCardToTable(new JassCard(7, CardColor.CLUBS));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+
+        assertFalse(isCardValid);
     }
 
 }
