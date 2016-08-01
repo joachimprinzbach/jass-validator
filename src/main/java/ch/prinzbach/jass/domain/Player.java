@@ -19,9 +19,14 @@ public class Player {
         return handCards.contains(card);
     }
 
-    public boolean hasNoCardWithColor(CardColor startCardColor) {
+    public boolean hasNoCardWithColor(CardColor startCardColor, CardColor trump) {
         return handCards.stream()
+                .filter(card -> !isTrumpJack(trump, card))
                 .map(JassCard::getColor)
                 .noneMatch(cardColor -> cardColor.equals(startCardColor));
+    }
+
+    private boolean isTrumpJack(CardColor trump, JassCard card) {
+        return card.getNumber() == 11 && card.getColor().equals(trump);
     }
 }
