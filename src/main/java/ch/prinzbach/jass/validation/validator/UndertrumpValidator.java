@@ -10,6 +10,9 @@ public class UndertrumpValidator implements JassCardValidator {
     @Override
     public boolean validate(JassTable jassTable, CardColor trump, JassCard cardToValidate, Player player) {
         if(aCardHasAlreadyBeenPlayed(jassTable)) {
+            if(player.hasOnlyTrump(trump)) {
+                return true;
+            }
             if (trumpHasBeenPlayed(jassTable, trump)) {
                 return true;
             }

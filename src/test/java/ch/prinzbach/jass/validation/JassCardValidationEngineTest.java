@@ -139,4 +139,17 @@ public class JassCardValidationEngineTest {
         assertFalse(isCardValid);
     }
 
+    @Test
+    public void validateCard_playerIsAllowedToUndertrumpWhenHasOnlyTrump() {
+        final JassCard cardToValidate = new JassCard(6, CardColor.SPADES);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(11, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(8, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(10, CardColor.SPADES));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+
+        assertTrue(isCardValid);
+    }
+
 }

@@ -29,4 +29,10 @@ public class Player {
     private boolean isTrumpJack(CardColor trump, JassCard card) {
         return card.getNumber() == 11 && card.getColor().equals(trump);
     }
+
+    public boolean hasOnlyTrump(CardColor trump) {
+        return handCards.stream()
+                .map(JassCard::getColor)
+                .allMatch(cardColor -> cardColor.equals(trump));
+    }
 }
