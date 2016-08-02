@@ -19,11 +19,11 @@ public class JassCardValidationEngine {
         validators.add(new UndertrumpValidator());
     }
 
-    public boolean validateCard(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
+    public ValidationResult validateCard(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         return validators.stream()
                 .map(validator -> validator.validate(jassTable, jassMode, cardToValidate, player))
                 .reduce(new ValidationResultReducer())
-                .get().isValid();
+                .get();
     }
 
 }
