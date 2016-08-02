@@ -175,5 +175,19 @@ public class JassCardValidationEngineTest {
         assertTrue(isCardValid);
     }
 
+    @Test
+    public void validateCard_playerIsNotAllowedToUndertrumpJackWithNell() {
+        final JassCard cardToValidate = new JassCard(CardValue.NINE, CardColor.SPADES);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(CardValue.ACE, CardColor.DIAMONDS));
+        jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+
+        assertFalse(isCardValid);
+    }
+
 
 }

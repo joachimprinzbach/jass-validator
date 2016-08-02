@@ -1,9 +1,7 @@
 package ch.prinzbach.jass.domain;
 
-import javax.smartcardio.Card;
 import java.util.LinkedHashSet;
 import java.util.Optional;
-import java.util.Set;
 
 public class JassTable {
 
@@ -29,9 +27,11 @@ public class JassTable {
         }
     }
 
-    public Optional<JassCard> getHighestTrumpPlayedSoFar(CardColor trump) {
+    public Optional<Integer> getHighestTrumpOrderPlayedSoFar(CardColor trump) {
         return playedCards.
-                stream().filter(jassCard -> jassCard.getColor().equals(trump)).findFirst();
-               // .max((o1, o2) -> o1.getNumber() - o2.getNumber());
+                stream().filter(jassCard -> jassCard.getColor().equals(trump))
+                .map(JassCard::getCardValue)
+                .map(CardValue::getTrumpOrder)
+                .max((trumpOrder1, trumpOrder2) -> (trumpOrder1 - trumpOrder2));
     }
 }

@@ -16,7 +16,7 @@ public class UndertrumpValidator implements JassCardValidator {
             if (trumpHasBeenPlayed(jassTable, trump)) {
                 return true;
             }
-            if(jassTable.getHighestTrumpPlayedSoFar(trump).isPresent()) {
+            if(jassTable.getHighestTrumpOrderPlayedSoFar(trump).isPresent()) {
                 return playerPlaysHigherTrump(jassTable, trump, cardToValidate);
             }
         }
@@ -24,7 +24,7 @@ public class UndertrumpValidator implements JassCardValidator {
     }
 
     private boolean playerPlaysHigherTrump(JassTable jassTable, CardColor trump, JassCard cardToValidate) {
-        return jassTable.getHighestTrumpPlayedSoFar(trump).get().getCardValue().getTrumpOrder() < cardToValidate.getCardValue().getTrumpOrder();
+        return jassTable.getHighestTrumpOrderPlayedSoFar(trump).get() < cardToValidate.getCardValue().getTrumpOrder();
     }
 
     private boolean trumpHasBeenPlayed(JassTable jassTable, CardColor trump) {

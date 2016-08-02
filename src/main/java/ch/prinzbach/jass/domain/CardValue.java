@@ -11,16 +11,10 @@ public enum CardValue {
     KING(7, 5),
     ACE(8, 6);
 
-    private final int normalOrder;
     private final int trumpOrder;
 
-    private CardValue(int normalOrder, int trumpOrder) {
-        this.normalOrder = normalOrder;
+    CardValue(int normalOrder, int trumpOrder) {
         this.trumpOrder = trumpOrder;
-    }
-
-    public int getNormalOrder() {
-        return normalOrder;
     }
 
     public int getTrumpOrder() {
