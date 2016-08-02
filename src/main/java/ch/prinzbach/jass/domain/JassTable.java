@@ -2,6 +2,7 @@ package ch.prinzbach.jass.domain;
 
 import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 /**
  * JassTable is the current jassRound that consists of a maximum of 4 cards.
@@ -30,11 +31,11 @@ public class JassTable {
         }
     }
 
-    public Optional<Integer> getHighestTrumpOrderPlayedSoFar(CardColor trump) {
+    public OptionalInt getHighestTrumpOrderPlayedSoFar(CardColor trump) {
         return playedCards.
                 stream().filter(jassCard -> jassCard.getColor().equals(trump))
                 .map(JassCard::getCardValue)
-                .map(CardValue::getTrumpOrder)
-                .max((trumpOrder1, trumpOrder2) -> (trumpOrder1 - trumpOrder2));
+                .mapToInt(CardValue::getTrumpOrder)
+                .max();
     }
 }

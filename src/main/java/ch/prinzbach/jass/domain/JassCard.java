@@ -20,4 +20,10 @@ public class JassCard {
     public CardValue getCardValue() {
         return cardValue;
     }
+
+    public boolean isTrumpJack(CardColor trump) {
+        return this.getCardValue().equals(CardValue.JACK) && this.getColor().equals(trump);
+    }
+
+
 }

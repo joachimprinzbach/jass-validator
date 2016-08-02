@@ -6,19 +6,19 @@ package ch.prinzbach.jass.domain;
  * In Trump mode, JACK is the highest card, followed by nine.
  */
 public enum CardValue {
-    SIX(0, 0),
-    SEVEN(1, 1),
-    EIGHT(2, 2),
-    NINE(3, 7),
-    TEN(4, 3),
-    JACK(5, 8),
-    QUEEN(6, 4),
-    KING(7, 5),
-    ACE(8, 6);
+    SIX(0),
+    SEVEN(1),
+    EIGHT(2),
+    NINE(7),
+    TEN(3),
+    JACK(8),
+    QUEEN(4),
+    KING(5),
+    ACE(6);
 
     private final int trumpOrder;
 
-    CardValue(int normalOrder, int trumpOrder) {
+    CardValue(int trumpOrder) {
         this.trumpOrder = trumpOrder;
     }
 

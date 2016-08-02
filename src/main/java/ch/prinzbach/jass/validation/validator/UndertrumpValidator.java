@@ -30,7 +30,7 @@ public class UndertrumpValidator implements JassCardValidator {
     }
 
     private boolean playerPlaysHigherTrump(JassTable jassTable, CardColor trump, JassCard cardToValidate) {
-        return jassTable.getHighestTrumpOrderPlayedSoFar(trump).get() < cardToValidate.getCardValue().getTrumpOrder();
+        return jassTable.getHighestTrumpOrderPlayedSoFar(trump).getAsInt() < cardToValidate.getCardValue().getTrumpOrder();
     }
 
     private boolean trumpHasBeenPlayedAsFirstCard(JassTable jassTable, CardColor trump) {

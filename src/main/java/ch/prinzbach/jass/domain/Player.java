@@ -24,13 +24,9 @@ public class Player {
 
     public boolean hasNoCardWithColor(CardColor startCardColor, CardColor trump) {
         return handCards.stream()
-                .filter(card -> !isTrumpJack(trump, card))
+                .filter(card -> !card.isTrumpJack(trump))
                 .map(JassCard::getColor)
                 .noneMatch(cardColor -> cardColor.equals(startCardColor));
-    }
-
-    private boolean isTrumpJack(CardColor trump, JassCard card) {
-        return card.getCardValue().equals(CardValue.JACK) && card.getColor().equals(trump);
     }
 
     public boolean hasOnlyTrump(CardColor trump) {
