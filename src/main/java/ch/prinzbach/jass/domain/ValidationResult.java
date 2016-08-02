@@ -21,4 +21,8 @@ public class ValidationResult {
     public boolean isValid() {
         return isValid;
     }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
 }
