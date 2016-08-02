@@ -17,10 +17,14 @@ public class UndertrumpValidator implements JassCardValidator {
                 return true;
             }
             if(jassTable.getHighestTrumpPlayedSoFar(trump).isPresent()) {
-                return jassTable.getHighestTrumpPlayedSoFar(trump).get().getCardValue().getTrumpOrder() < cardToValidate.getCardValue().getTrumpOrder();
+                return playerPlaysHigherTrump(jassTable, trump, cardToValidate);
             }
         }
         return true;
+    }
+
+    private boolean playerPlaysHigherTrump(JassTable jassTable, CardColor trump, JassCard cardToValidate) {
+        return jassTable.getHighestTrumpPlayedSoFar(trump).get().getCardValue().getTrumpOrder() < cardToValidate.getCardValue().getTrumpOrder();
     }
 
     private boolean trumpHasBeenPlayed(JassTable jassTable, CardColor trump) {
