@@ -2,6 +2,9 @@ package ch.prinzbach.jass.validation.validator;
 
 import ch.prinzbach.jass.domain.*;
 
+/**
+ * Validator to check whether the card would be a lower trump than the ones already played.
+ */
 public class UndertrumpValidator implements JassCardValidator {
 
     public static final String UNDERTRUMP_ERR_MSG = "Playing a lower trump card is not allowed";

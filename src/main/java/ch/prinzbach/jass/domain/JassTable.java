@@ -3,6 +3,9 @@ package ch.prinzbach.jass.domain;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 
+/**
+ * JassTable is the current jassRound that consists of a maximum of 4 cards.
+ */
 public class JassTable {
 
     private final LinkedHashSet<JassCard> playedCards;

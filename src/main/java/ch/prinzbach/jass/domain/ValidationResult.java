@@ -1,5 +1,11 @@
 package ch.prinzbach.jass.domain;
 
+/**
+ * ValidationResult for jassCard validation.
+ *
+ * Validity indicates whether player is allowed to play the card.
+ * ErrorMsg contains the reason why player must not play a card.
+ */
 public class ValidationResult {
 
     private boolean isValid;

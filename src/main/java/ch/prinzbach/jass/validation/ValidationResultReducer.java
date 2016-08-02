@@ -5,6 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.function.BinaryOperator;
 
+/**
+ * Reduces {@link ValidationResult}s to a single Result.
+ */
 public class ValidationResultReducer implements BinaryOperator<ValidationResult> {
 
     @Override

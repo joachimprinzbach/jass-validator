@@ -1,5 +1,8 @@
 package ch.prinzbach.jass.domain;
 
+/**
+ * JassMode can be one of the "Schieber" modes: OBEN_ABE, UNDEN_UFE or a TRUMP mode.
+ */
 public enum JassMode {
 
     OBEN_ABE(null),

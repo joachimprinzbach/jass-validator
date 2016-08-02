@@ -1,5 +1,8 @@
 package ch.prinzbach.jass.domain;
 
+/**
+ * A JassCard consists of a {@link CardValue} and its corresponding {@link CardColor}.
+ */
 public class JassCard {
 
     private final CardColor color;

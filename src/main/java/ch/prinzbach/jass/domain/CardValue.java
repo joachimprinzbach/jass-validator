@@ -1,5 +1,10 @@
 package ch.prinzbach.jass.domain;
 
+/**
+ * CardValue contains a unique order for nonTrump and trump modes.
+ *
+ * In Trump mode, JACK is the highest card, followed by nine.
+ */
 public enum CardValue {
     SIX(0, 0),
     SEVEN(1, 1),

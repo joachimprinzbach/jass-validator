@@ -3,6 +3,9 @@ package ch.prinzbach.jass.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * A JassPlayer that has {@link JassCard}s in his hands.
+ */
 public class Player {
 
     private final Set<JassCard> handCards;

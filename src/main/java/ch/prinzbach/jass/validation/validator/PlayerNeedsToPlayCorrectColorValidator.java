@@ -2,6 +2,9 @@ package ch.prinzbach.jass.validation.validator;
 
 import ch.prinzbach.jass.domain.*;
 
+/**
+ * Validator to check whether player plays the correct card color.
+ */
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     public static final String PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG = "Player needs to play correct color.";
