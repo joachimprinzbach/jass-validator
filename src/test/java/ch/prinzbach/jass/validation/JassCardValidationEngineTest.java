@@ -143,7 +143,7 @@ public class JassCardValidationEngineTest {
     }
 
     @Test
-    public void validateCard_playerIsNotAllowedToPlayerLowerTrumpCardWhenNonTrumpWasStarted() {
+    public void validateCard_playerIsNotAllowedToPlayLowerTrumpCardWhenNonTrumpWasStarted() {
         final JassCard cardToValidate = new JassCard(CardValue.TEN, CardColor.SPADES);
         player.addCard(cardToValidate);
         player.addCard(new JassCard(CardValue.EIGHT, CardColor.DIAMONDS));
