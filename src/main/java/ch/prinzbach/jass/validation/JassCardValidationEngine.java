@@ -22,7 +22,7 @@ public class JassCardValidationEngine {
     public boolean validateCard(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         return validators.stream()
                 .map(validator -> validator.validate(jassTable, jassMode, cardToValidate, player))
-                .allMatch(valid -> valid);
+                .allMatch(valid -> valid.isValid());
     }
 
 }

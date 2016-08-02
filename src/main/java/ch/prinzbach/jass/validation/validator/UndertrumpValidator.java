@@ -5,20 +5,23 @@ import ch.prinzbach.jass.domain.*;
 public class UndertrumpValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
+    public ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         if(aCardHasAlreadyBeenPlayed(jassTable) || !jassMode.isTrumpMode()) {
             final CardColor trump = jassMode.getTrump();
             if(player.hasOnlyTrump(trump)) {
-                return true;
+                return ValidationResult.validationSuccess();
             }
             if (trumpHasBeenPlayed(jassTable, trump)) {
-                return true;
+                return ValidationResult.validationSuccess();
             }
             if(jassTable.getHighestTrumpOrderPlayedSoFar(trump).isPresent()) {
-                return playerPlaysHigherTrump(jassTable, trump, cardToValidate);
+                if(playerPlaysHigherTrump(jassTable, trump, cardToValidate)) {
+                    return ValidationResult.validationSuccess();
+                }
+                return ValidationResult.validationFailed("ERRR MSG NOT YET DEFINED");
             }
         }
-        return true;
+        return ValidationResult.validationSuccess();
     }
 
     private boolean playerPlaysHigherTrump(JassTable jassTable, CardColor trump, JassCard cardToValidate) {

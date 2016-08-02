@@ -4,5 +4,5 @@ import ch.prinzbach.jass.domain.*;
 
 public interface JassCardValidator {
 
-    boolean validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player);
+    ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player);
 }

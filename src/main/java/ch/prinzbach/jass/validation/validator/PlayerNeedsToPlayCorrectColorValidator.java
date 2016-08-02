@@ -5,18 +5,21 @@ import ch.prinzbach.jass.domain.*;
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
+    public ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         if (jassTable.isFirstPlayedCard()) {
-            return true;
+            return ValidationResult.validationSuccess();
         }
         final CardColor startCardColor = jassTable.getFirstCard().get().getColor();
         if (isCorrectColor(cardToValidate.getColor(), startCardColor)) {
-            return true;
+            return ValidationResult.validationSuccess();
         }
         if (isTrump(cardToValidate, jassMode.getTrump())) {
-            return true;
+            return ValidationResult.validationSuccess();
         }
-        return player.hasNoCardWithColor(startCardColor, jassMode.getTrump());
+        if(player.hasNoCardWithColor(startCardColor, jassMode.getTrump())) {
+            return ValidationResult.validationSuccess();
+        }
+        return ValidationResult.validationFailed("TODO: DEFINE ERR MSG");
     }
 
     private boolean isCorrectColor(CardColor color, CardColor startCardColor) {

@@ -5,7 +5,10 @@ import ch.prinzbach.jass.domain.*;
 public class PlayerHasCardValidator implements JassCardValidator {
 
     @Override
-    public boolean validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
-        return player.hasCard(cardToValidate);
+    public ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
+        if (player.hasCard(cardToValidate)) {
+            return ValidationResult.validationSuccess();
+        }
+        return ValidationResult.validationFailed("Player does not have the card in his hands.");
     }
 }
