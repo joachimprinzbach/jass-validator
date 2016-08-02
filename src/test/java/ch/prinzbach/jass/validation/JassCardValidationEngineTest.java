@@ -29,7 +29,7 @@ public class JassCardValidationEngineTest {
         final JassCard cardToValidate = new JassCard(CardValue.SIX, CardColor.HEARTS);
         player.addCard(cardToValidate);
 
-        final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
+        final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_CLUBS, cardToValidate, player);
 
         assertValidationSuccess(validationResult);
     }

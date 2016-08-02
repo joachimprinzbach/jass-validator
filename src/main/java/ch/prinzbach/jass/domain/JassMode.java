@@ -14,15 +14,11 @@ public enum JassMode {
 
     private CardColor trump;
 
-    private JassMode(CardColor trump) {
+    JassMode(CardColor trump) {
         this.trump = trump;
     }
 
     public CardColor getTrump() {
         return trump;
-    }
-
-    public boolean isTrumpMode() {
-        return this.equals(TRUMP_HEARTS) || this.equals(TRUMP_CLUBS) || this.equals(TRUMP_SPADES) || this.equals(TRUMP_DIAMONDS);
     }
 }
