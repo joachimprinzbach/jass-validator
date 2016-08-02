@@ -4,6 +4,8 @@ import ch.prinzbach.jass.domain.*;
 
 public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator {
 
+    public static final String PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG = "Player needs to play correct color.";
+
     @Override
     public ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         if (jassTable.isFirstPlayedCard()) {
@@ -19,7 +21,7 @@ public class PlayerNeedsToPlayCorrectColorValidator implements JassCardValidator
         if(player.hasNoCardWithColor(startCardColor, jassMode.getTrump())) {
             return ValidationResult.validationSuccess();
         }
-        return ValidationResult.validationFailed("TODO: DEFINE ERR MSG");
+        return ValidationResult.validationFailed(PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG);
     }
 
     private boolean isCorrectColor(CardColor color, CardColor startCardColor) {

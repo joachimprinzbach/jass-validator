@@ -4,6 +4,8 @@ import ch.prinzbach.jass.domain.*;
 
 public class UndertrumpValidator implements JassCardValidator {
 
+    public static final String UNDERTRUMP_ERR_MSG = "Playing a lower trump card is not allowed";
+
     @Override
     public ValidationResult validate(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
         if(aCardHasAlreadyBeenPlayed(jassTable) || !jassMode.isTrumpMode()) {
@@ -18,7 +20,7 @@ public class UndertrumpValidator implements JassCardValidator {
                 if(playerPlaysHigherTrump(jassTable, trump, cardToValidate)) {
                     return ValidationResult.validationSuccess();
                 }
-                return ValidationResult.validationFailed("ERRR MSG NOT YET DEFINED");
+                return ValidationResult.validationFailed(UNDERTRUMP_ERR_MSG);
             }
         }
         return ValidationResult.validationSuccess();

@@ -1,9 +1,13 @@
 package ch.prinzbach.jass.validation;
 
 import ch.prinzbach.jass.domain.*;
+import ch.prinzbach.jass.validation.validator.PlayerHasCardValidator;
+import ch.prinzbach.jass.validation.validator.PlayerNeedsToPlayCorrectColorValidator;
+import ch.prinzbach.jass.validation.validator.UndertrumpValidator;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -36,19 +40,20 @@ public class JassCardValidationEngineTest {
 
         final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
-        assertValidationError(validationResult);
+        assertValidationError(validationResult, PlayerHasCardValidator.PLAYER_HAS_CARD_ERR_MSG);
     }
 
     @Test
     public void validateCard_playerShouldHavePlayedSameColor() {
         final JassCard cardToValidate = new JassCard(CardValue.SIX, CardColor.HEARTS);
-        jassTable.addCardToTable(cardToValidate);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(CardValue.ACE, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.CLUBS));
 
         final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
-        assertValidationError(validationResult);
+        assertValidationError(validationResult, PlayerNeedsToPlayCorrectColorValidator.PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG);
     }
 
     @Test
@@ -106,7 +111,7 @@ public class JassCardValidationEngineTest {
 
         final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
-        assertValidationError(validationResult);
+        assertValidationError(validationResult, PlayerNeedsToPlayCorrectColorValidator.PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG);
     }
 
     @Test
@@ -133,7 +138,7 @@ public class JassCardValidationEngineTest {
 
         final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
-        assertValidationError(validationResult);
+        assertValidationError(validationResult, UndertrumpValidator.UNDERTRUMP_ERR_MSG);
     }
 
     @Test
@@ -186,7 +191,7 @@ public class JassCardValidationEngineTest {
 
         final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
-        assertValidationError(validationResult);
+        assertValidationError(validationResult, UndertrumpValidator.UNDERTRUMP_ERR_MSG);
     }
 
     @Test
@@ -217,8 +222,22 @@ public class JassCardValidationEngineTest {
         assertValidationSuccess(validationResult);
     }
 
-    private void assertValidationError(ValidationResult validationResult) {
+    @Test
+    public void validateCard_playerDoesNotHaveCardAndIsUndertrump() {
+        final JassCard cardToValidate = new JassCard(CardValue.NINE, CardColor.SPADES);
+        player.addCard(new JassCard(CardValue.ACE, CardColor.DIAMONDS));
+        jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
+
+        final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
+
+        assertValidationError(validationResult, PlayerHasCardValidator.PLAYER_HAS_CARD_ERR_MSG + "\n" + UndertrumpValidator.UNDERTRUMP_ERR_MSG);
+    }
+
+    private void assertValidationError(ValidationResult validationResult, String expectedErrMsg) {
         assertFalse(validationResult.isValid());
+        assertEquals(expectedErrMsg, validationResult.getErrMsg());
     }
 
     private void assertValidationSuccess(ValidationResult validationResult) {
