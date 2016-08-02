@@ -25,7 +25,7 @@ public class JassCardValidationEngineTest {
         final JassCard cardToValidate = new JassCard(CardValue.SIX, CardColor.HEARTS);
         player.addCard(cardToValidate);
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -34,7 +34,7 @@ public class JassCardValidationEngineTest {
     public void validateCard_playerHasCardNotInHand() {
         final JassCard cardToValidate = new JassCard(CardValue.SIX, CardColor.HEARTS);
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -46,7 +46,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -57,7 +57,7 @@ public class JassCardValidationEngineTest {
         player.addCard(cardToValidate);
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -68,7 +68,7 @@ public class JassCardValidationEngineTest {
         player.addCard(cardToValidate);
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.HEARTS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -78,7 +78,7 @@ public class JassCardValidationEngineTest {
         final JassCard cardToValidate = new JassCard(CardValue.SIX, CardColor.HEARTS);
         player.addCard(cardToValidate);
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -91,7 +91,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -104,7 +104,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.CLUBS));
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.CLUBS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.DIAMONDS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_DIAMONDS, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -118,7 +118,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.HEARTS));
         jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.HEARTS));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.HEARTS, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_HEARTS, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -131,7 +131,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.HEARTS));
         jassTable.addCardToTable(new JassCard(CardValue.QUEEN, CardColor.SPADES));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertFalse(isCardValid);
     }
@@ -144,7 +144,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.HEARTS));
         jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.SPADES));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -157,7 +157,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.HEARTS));
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.SPADES));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -170,7 +170,7 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.HEARTS));
         jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.SPADES));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertTrue(isCardValid);
     }
@@ -184,9 +184,37 @@ public class JassCardValidationEngineTest {
         jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
         jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
 
-        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, CardColor.SPADES, cardToValidate, player);
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_SPADES, cardToValidate, player);
 
         assertFalse(isCardValid);
+    }
+
+    @Test
+    public void validateCard_thereIsNoUndertrumpForObenAbe() {
+        final JassCard cardToValidate = new JassCard(CardValue.NINE, CardColor.SPADES);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(CardValue.ACE, CardColor.DIAMONDS));
+        jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.OBEN_ABE, cardToValidate, player);
+
+        assertTrue(isCardValid);
+    }
+
+    @Test
+    public void validateCard_thereIsNoUndertrumpForUndeUfe() {
+        final JassCard cardToValidate = new JassCard(CardValue.NINE, CardColor.SPADES);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(CardValue.ACE, CardColor.DIAMONDS));
+        jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
+
+        boolean isCardValid = jassCardValidationEngine.validateCard(jassTable, JassMode.UNDEN_UFE, cardToValidate, player);
+
+        assertTrue(isCardValid);
     }
 
 
