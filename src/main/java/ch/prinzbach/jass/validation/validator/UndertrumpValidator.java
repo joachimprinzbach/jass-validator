@@ -17,7 +17,7 @@ public class UndertrumpValidator implements JassCardValidator {
                 return true;
             }
             if(jassTable.getHighestTrumpPlayedSoFar(trump).isPresent()) {
-                return jassTable.getHighestTrumpPlayedSoFar(trump).get().getNumber() < cardToValidate.getNumber();
+                return jassTable.getHighestTrumpPlayedSoFar(trump).get().getCardValue().getTrumpOrder() < cardToValidate.getCardValue().getTrumpOrder();
             }
         }
         return true;
