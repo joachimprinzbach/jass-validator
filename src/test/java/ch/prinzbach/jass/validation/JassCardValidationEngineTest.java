@@ -129,6 +129,20 @@ public class JassCardValidationEngineTest {
     }
 
     @Test
+    public void validateCard_trumpNineNeedsToBePlayed() {
+        final JassCard cardToValidate = new JassCard(CardValue.TEN, CardColor.SPADES);
+        final JassCard trumpJack = new JassCard(CardValue.NINE, CardColor.HEARTS);
+        player.addCard(cardToValidate);
+        player.addCard(trumpJack);
+        jassTable.addCardToTable(new JassCard(CardValue.TEN, CardColor.HEARTS));
+        jassTable.addCardToTable(new JassCard(CardValue.SEVEN, CardColor.HEARTS));
+
+        final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_HEARTS, cardToValidate, player);
+
+        assertValidationError(validationResult, PlayerNeedsToPlayCorrectColorValidator.PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG);
+    }
+
+    @Test
     public void validateCard_playerIsNotAllowedToPlayerLowerTrumpCardWhenNonTrumpWasStarted() {
         final JassCard cardToValidate = new JassCard(CardValue.TEN, CardColor.SPADES);
         player.addCard(cardToValidate);
