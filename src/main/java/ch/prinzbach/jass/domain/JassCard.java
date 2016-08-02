@@ -2,11 +2,11 @@ package ch.prinzbach.jass.domain;
 
 public class JassCard {
 
-    private final int number;
     private final CardColor color;
+    private final CardValue cardValue;
 
-    public JassCard(int number, CardColor color) {
-        this.number = number;
+    public JassCard(CardValue cardValue, CardColor color) {
+        this.cardValue = cardValue;
         this.color = color;
     }
 
@@ -14,8 +14,7 @@ public class JassCard {
         return color;
     }
 
-    public int getNumber() {
-        return number;
+    public CardValue getCardValue() {
+        return cardValue;
     }
-
 }
