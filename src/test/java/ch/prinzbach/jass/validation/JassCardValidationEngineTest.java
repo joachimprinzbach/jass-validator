@@ -263,6 +263,20 @@ public class JassCardValidationEngineTest {
         assertValidationSuccess(validationResult);
     }
 
+    @Test
+    public void validateCard_playerNeedsToPlayJackCauseItIsNotTrump() {
+        final JassCard cardToValidate = new JassCard(CardValue.NINE, CardColor.DIAMONDS);
+        player.addCard(cardToValidate);
+        player.addCard(new JassCard(CardValue.JACK, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.EIGHT, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.KING, CardColor.SPADES));
+        jassTable.addCardToTable(new JassCard(CardValue.JACK, CardColor.SPADES));
+
+        final ValidationResult validationResult = jassCardValidationEngine.validateCard(jassTable, JassMode.TRUMP_HEARTS, cardToValidate, player);
+
+        assertValidationError(validationResult, PlayerNeedsToPlayCorrectColorValidator.PLAYER_NEEDS_TO_PLAY_CORRECT_COLOR_ERR_MSG);
+    }
+
     private void assertValidationError(ValidationResult validationResult, String expectedErrMsg) {
         assertFalse(validationResult.isValid());
         assertEquals(expectedErrMsg, validationResult.getErrMsg());
