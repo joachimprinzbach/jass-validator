@@ -34,7 +34,8 @@ public class JassCardValidationEngine {
      * @return @{@link ValidationResult}
      */
     public ValidationResult validateCard(JassTable jassTable, JassMode jassMode, JassCard cardToValidate, Player player) {
-        return validators.stream()
+        return validators
+                .stream()
                 .map(validator -> validator.validate(jassTable, jassMode, cardToValidate, player))
                 .reduce(new ValidationResultReducer())
                 .get();

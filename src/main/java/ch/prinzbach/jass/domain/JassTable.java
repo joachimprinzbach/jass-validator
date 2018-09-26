@@ -32,8 +32,9 @@ public class JassTable {
     }
 
     public OptionalInt getHighestTrumpOrderPlayedSoFar(CardColor trump) {
-        return playedCards.
-                stream().filter(jassCard -> jassCard.getColor().equals(trump))
+        return playedCards
+                .stream()
+                .filter(jassCard -> jassCard.getColor().equals(trump))
                 .map(JassCard::getCardValue)
                 .mapToInt(CardValue::getTrumpOrder)
                 .max();
